@@ -8,7 +8,7 @@ export interface DialogOptions {
     closeByClickingOutside?: boolean;
     backdropColor?: string;
     suppressCount?: boolean;
-    doNotOverrideZindex: boolean;
+    doNotOverrideZindex?: boolean;
 }
 export declare class DialogServiceConfig {
     container: HTMLElement;
