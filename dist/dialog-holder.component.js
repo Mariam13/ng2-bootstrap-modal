@@ -25,6 +25,9 @@ var DialogHolderComponent = (function () {
             this.dialogs.push(_component);
         }
         setTimeout(function () {
+            if (!options.doNotOverrideZindex) {
+                dialogWrapper.container.nativeElement.style.zIndex = _this.dialogs.length + 10050;
+            }
             dialogWrapper.container.nativeElement.classList.add('show');
             dialogWrapper.container.nativeElement.classList.add('in');
             var firstInput = dialogWrapper.container.nativeElement.querySelector("input");

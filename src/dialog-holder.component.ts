@@ -51,6 +51,9 @@ export class DialogHolderComponent {
       this.dialogs.push(_component);
     }
     setTimeout(()=>{
+      if (!options.doNotOverrideZindex) {
+        dialogWrapper.container.nativeElement.style.zIndex = this.dialogs.length + 10050;
+      }
       dialogWrapper.container.nativeElement.classList.add('show');
       dialogWrapper.container.nativeElement.classList.add('in');
       const firstInput = dialogWrapper.container.nativeElement.querySelector("input");
