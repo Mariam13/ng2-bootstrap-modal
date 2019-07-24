@@ -28,6 +28,13 @@ var DialogHolderComponent = (function () {
             if (!options.doNotOverrideZindex) {
                 dialogWrapper.container.nativeElement.style.zIndex = _this.dialogs.length + 10050;
             }
+            if (_this.dialogs.length > 1) {
+                for (var _i = 0, _a = _this.dialogs; _i < _a.length; _i++) {
+                    var dialog = _a[_i];
+                    dialog.wrapper.container.nativeElement.classList.remove('modal-topmost');
+                }
+            }
+            dialogWrapper.container.nativeElement.classList.add('modal-topmost');
             dialogWrapper.container.nativeElement.classList.add('show');
             dialogWrapper.container.nativeElement.classList.add('in');
             var firstInput = dialogWrapper.container.nativeElement.querySelector("input");
@@ -56,6 +63,11 @@ var DialogHolderComponent = (function () {
         var element = component.wrapper.container.nativeElement;
         element.classList.remove('show');
         element.classList.remove('in');
+        element.classList.remove('modal-topmost');
+        if (this.dialogs.length > 1) {
+            var newTop = this.dialogs[this.dialogs.length - 2];
+            newTop.wrapper.container.nativeElement.classList.add('modal-topmost');
+        }
         setTimeout(function () {
             _this._removeElement(component);
         }, 300);

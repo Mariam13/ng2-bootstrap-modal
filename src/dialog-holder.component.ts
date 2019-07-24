@@ -54,6 +54,12 @@ export class DialogHolderComponent {
       if (!options.doNotOverrideZindex) {
         dialogWrapper.container.nativeElement.style.zIndex = this.dialogs.length + 10050;
       }
+      if (this.dialogs.length > 1) {
+        for (const dialog of this.dialogs) {
+          dialog.wrapper.container.nativeElement.classList.remove('modal-topmost');
+        }
+      }
+      dialogWrapper.container.nativeElement.classList.add('modal-topmost');
       dialogWrapper.container.nativeElement.classList.add('show');
       dialogWrapper.container.nativeElement.classList.add('in');
       const firstInput = dialogWrapper.container.nativeElement.querySelector("input");
@@ -88,6 +94,11 @@ export class DialogHolderComponent {
 
     element.classList.remove('show');
     element.classList.remove('in');
+    element.classList.remove('modal-topmost');
+    if (this.dialogs.length > 1) {
+      const newTop = this.dialogs[this.dialogs.length - 2];
+      newTop.wrapper.container.nativeElement.classList.add('modal-topmost');
+    }
     setTimeout(() => {
         this._removeElement(component);
     }, 300);
