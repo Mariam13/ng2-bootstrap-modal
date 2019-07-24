@@ -5,7 +5,7 @@ import {DialogComponent} from "./dialog.component";
 import {DialogService} from "./dialog.service";
 
 @Component({
-  selector: 'dialog-wrapper',
+  selector: 'dialog-wrapper.modal-dialog-wrapper',
   template: `
     <div #container class="modal fade" style="display:block;" role="dialog">
         <ng-template #element></ng-template>

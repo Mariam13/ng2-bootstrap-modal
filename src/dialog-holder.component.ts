@@ -9,7 +9,7 @@ import 'rxjs/add/operator/take';
 import {DialogOptions} from "./dialog.service";
 
 @Component({
-  selector: 'dialog-holder',
+  selector: 'dialog-holder.modal-dialog-holder',
   template: '<ng-template #element></ng-template>',
 })
 export class DialogHolderComponent {

@@ -73,7 +73,7 @@ var DialogHolderComponent = (function () {
     };
     DialogHolderComponent.decorators = [
         { type: core_1.Component, args: [{
-                    selector: 'dialog-holder',
+                    selector: 'dialog-holder.modal-dialog-holder',
                     template: '<ng-template #element></ng-template>',
                 },] },
     ];

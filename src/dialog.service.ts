@@ -40,7 +40,12 @@ export class DialogService {
    * @param {Injector} injector
    * @param {DialogServiceConfig} config
    */
-  constructor(private resolver: ComponentFactoryResolver, private applicationRef: ApplicationRef, private injector: Injector, @Optional() config: DialogServiceConfig) {
+  constructor(
+    private resolver: ComponentFactoryResolver,
+    private applicationRef: ApplicationRef, 
+    private injector: Injector,
+    @Optional() config: DialogServiceConfig
+  ) {
     this.container = config && config.container;
   }
 
@@ -123,7 +128,6 @@ export class DialogService {
       this.applicationRef.detachView(componentRef.hostView);
     });
     this.container.appendChild(componentRootNode);
-
     return componentRef.instance;
   }
 }
