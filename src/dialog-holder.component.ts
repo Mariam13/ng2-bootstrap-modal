@@ -62,10 +62,22 @@ export class DialogHolderComponent {
       dialogWrapper.container.nativeElement.classList.add('modal-topmost');
       dialogWrapper.container.nativeElement.classList.add('show');
       dialogWrapper.container.nativeElement.classList.add('in');
-      const firstInput = dialogWrapper.container.nativeElement.querySelector("input");
-      if (firstInput) {
-        (<HTMLElement>firstInput).focus();
-      }	
+      if (document.activeElement instanceof HTMLElement) {
+        setTimeout(() => (<HTMLElement>document.activeElement).blur());
+      }
+      const inputNodes = dialogWrapper.container.nativeElement.querySelectorAll("input");
+      // const buttonNodes = dialogWrapper.container.nativeElement.querySelectorAll("button");
+      // const anchorNodes = dialogWrapper.container.nativeElement.querySelectorAll("a");
+      if (inputNodes && inputNodes.length > 0) {
+        const firstInput = inputNodes[0];
+        this.setFocus(firstInput);
+      } // else if (anchorNodes && anchorNodes.length > 0) {
+      //   const lastAnchor = anchorNodes[anchorNodes.length - 1];
+      //   this.setFocus(lastAnchor);
+      // } else if (buttonNodes && buttonNodes.length > 0) {
+      //   const lastButton = buttonNodes[buttonNodes.length - 1];
+      //   this.setFocus(lastButton);
+      // }
     });
     if(options.autoCloseTimeout) {
       setTimeout(()=>{
@@ -115,5 +127,13 @@ export class DialogHolderComponent {
   clear() {
     this.element.clear();
     this.dialogs = [];
+  }
+
+  private setFocus(el: HTMLElement): void {
+    if (el) {
+      setTimeout(() => {
+        (<HTMLElement>el).focus();
+      }, 100);
+    }
   }
 }

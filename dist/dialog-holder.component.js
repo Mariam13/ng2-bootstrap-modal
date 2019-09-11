@@ -37,9 +37,13 @@ var DialogHolderComponent = (function () {
             dialogWrapper.container.nativeElement.classList.add('modal-topmost');
             dialogWrapper.container.nativeElement.classList.add('show');
             dialogWrapper.container.nativeElement.classList.add('in');
-            var firstInput = dialogWrapper.container.nativeElement.querySelector("input");
-            if (firstInput) {
-                firstInput.focus();
+            if (document.activeElement instanceof HTMLElement) {
+                setTimeout(function () { return document.activeElement.blur(); });
+            }
+            var inputNodes = dialogWrapper.container.nativeElement.querySelectorAll("input");
+            if (inputNodes && inputNodes.length > 0) {
+                var firstInput = inputNodes[0];
+                _this.setFocus(firstInput);
             }
         });
         if (options.autoCloseTimeout) {
@@ -82,6 +86,13 @@ var DialogHolderComponent = (function () {
     DialogHolderComponent.prototype.clear = function () {
         this.element.clear();
         this.dialogs = [];
+    };
+    DialogHolderComponent.prototype.setFocus = function (el) {
+        if (el) {
+            setTimeout(function () {
+                el.focus();
+            }, 100);
+        }
     };
     DialogHolderComponent.decorators = [
         { type: core_1.Component, args: [{

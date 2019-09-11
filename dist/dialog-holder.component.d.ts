@@ -13,4 +13,5 @@ export declare class DialogHolderComponent {
     removeDialog(component: DialogComponent<any, any>): void;
     private _removeElement(component);
     clear(): void;
+    private setFocus(el);
 }
