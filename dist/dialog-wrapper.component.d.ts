@@ -10,4 +10,5 @@ export declare class DialogWrapperComponent {
     constructor(resolver: ComponentFactoryResolver, dialogService: DialogService);
     addComponent<T, T1>(component: Type<DialogComponent<T, T1>>): DialogComponent<any, any>;
     closeByClickOutside(): void;
+    closeByClickSpecificElement(): void;
 }

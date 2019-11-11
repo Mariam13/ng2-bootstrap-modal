@@ -35,6 +35,24 @@ var DialogWrapperComponent = (function () {
             _this.dialogService.removeDialog(_this.content);
         }, false);
     };
+    DialogWrapperComponent.prototype.closeByClickSpecificElement = function () {
+        var _this = this;
+        try {
+            var containerEl = this.container.nativeElement;
+            containerEl.querySelector('.modal-content').addEventListener('mouseup', function (event) {
+                event.stopPropagation();
+            });
+            document.addEventListener('mouseup', function (event) {
+                if (event.srcElement.className.includes('toast-message')) {
+                    _this.dialogService.removeDialog(_this.content);
+                }
+                event.stopPropagation();
+            });
+        }
+        catch (e) {
+            console.log(e);
+        }
+    };
     __decorate([
         core_1.ViewChild('element', { read: core_1.ViewContainerRef }),
         __metadata("design:type", core_1.ViewContainerRef)

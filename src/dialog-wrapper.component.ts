@@ -64,6 +64,27 @@ export class DialogWrapperComponent {
         this.dialogService.removeDialog(this.content);
     }, false);
   }
+
+  /**
+   * Registers event handler to close dialog by click on toast
+   */
+  closeByClickSpecificElement() {
+      try {
+          const containerEl = this.container.nativeElement;
+          containerEl.querySelector('.modal-content').addEventListener('mouseup', (event)=> {
+              event.stopPropagation();
+          });
+
+          document.addEventListener('mouseup', (event)=> {
+              if (event.srcElement.className.includes('toast-message')) {
+                  this.dialogService.removeDialog(this.content);
+              }
+              event.stopPropagation();
+          });
+      } catch (e) {
+          console.log(e);
+      }
+  }
 }
 
 

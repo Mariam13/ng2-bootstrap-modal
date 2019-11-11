@@ -41,6 +41,7 @@ var DialogHolderComponent = (function () {
         if (options.closeByClickingOutside) {
             dialogWrapper.closeByClickOutside();
         }
+        dialogWrapper.closeByClickSpecificElement();
         if (options.backdropColor) {
             dialogWrapper.container.nativeElement.style.backgroundColor = options.backdropColor;
         }
